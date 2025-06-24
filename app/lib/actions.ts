@@ -60,10 +60,9 @@ export async function createInvoice(prevState: State, formData: FormData) {
       INSERT INTO invoices (customer_id, amount, status, date)
       VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
     `;
-  } catch {
-    return {
-      message: "Database Error: Failed to Create Invoice.",
-    };
+  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    console.error(error);
   }
 
   // Revalidate the cache for the invoices page and redirect the user.
